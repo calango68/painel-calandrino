@@ -2,59 +2,34 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Breaking News - Calandrino</title>
+    <title>Painel Calandrino</title>
     <style>
-        body { background-color: #0d0d0d; color: #eee; font-family: sans-serif; padding: 20px; }
-        h1 { text-align: center; color: #ff4500; border-bottom: 2px solid #333; padding-bottom: 10px; }
-        
-        /* Sistema de colunas que aceita texto puro */
-        #noticias-grid {
+        body { 
+            background: #000; color: #fff; font-family: sans-serif; padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 15px;
-            white-space: pre-wrap; /* Mantém as quebras de linha do seu script */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
         }
-
+        /* Título em Vermelho de destaque */
+        .header { 
+            grid-column: 1 / -1; 
+            text-align: center; 
+            color: #ff0000; 
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 3px solid #ff0000;
+            margin-bottom: 20px;
+        }
+        /* Estilo das notícias que o script vai colar */
         .noticia-item {
-            background: #1a1a1a;
-            border-left: 5px solid #ff4500;
+            background: #111;
+            border: 1px solid #333;
+            border-left: 5px solid #ff0000;
             padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            display: block;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Breaking News - Painel Calandrino</h1>
-    <pre id="noticias-grid">
-
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Vídeo mostra explosões perto da Torre Azadi em Teerã
-[Al Jazeera] Crescem os apelos para uma investigação independente sobre o ataque mortal a meninas iranianas em escolas
-[Al Jazeera] Casa Branca publica vídeo sobre ‘justiça americana’ dias após ataque a escola no Irã
-[Al Jazeera] Será que Donald Trump não conseguiu vender a guerra do Irão ao mundo?
-[Al Jazeera] Oposição curda pondera se deve confiar em Trump após apelo à revolta no Irão
-[Al Jazeera] ‘Nenhum acordo com o Irão, exceto rendição incondicional’, diz Trump
-[CNN Brasil] Ataques iranianos contra civis não ficarão sem resposta, dizem EUA
-[CNN Brasil] Petrobras deve ter dividendos extras e vê margens maiores com guerra
-[CNN Brasil] Ex-BBB Ariadna faz relato sobre Dubai em meio à Guerra no Oriente Médio
-[G1 Mundo] Trump diz não se importar se novo governo do Irã será democrático
-[G1 Mundo] Por que invasão por terra no Irã pode estar a caminho - mas não por soldados americanos ou israelenses
-[G1 Mundo] Em uma semana, guerra no Irã produz efeitos drásticos no Oriente Médio e mensagens contraditórias dos EUA
-[G1 Mundo] Trump exige 'rendição incondicional' do Irã
-[G1 Mundo] Guerra no Irã: Israel anuncia onda de ataques contra infraestrutura do 'regime terrorista'
-[G1 Mundo] Análise indica que escola no Irã foi atingida durante ataque dos EUA a base militar, diz jornal
-[G1 Mundo] Quanto mais a guerra se prolonga, maior é o risco de terrorismo e ações de aliados do Irã pelo mundo, diz ex-subsecretário de Estado do governo Trump
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
+    <div class="header">BREAKING NEWS <br> PAINEL CALANDRINO</div>
