@@ -6,12 +6,13 @@
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
         .header, .info-bar, .canais-box { grid-column: 1 / -1; }
-        .header { text-align: center; color: #ff0000; border-bottom: 3px solid #ff0000; font-size: 2.2rem; font-weight: bold; text-transform: uppercase; }
-        .info-bar { display: flex; justify-content: space-between; background: #111; padding: 15px; color: #ffb703; border-radius: 5px; margin-top: 10px; font-size: 1.2rem; border: 1px solid #333; }
+        .header { text-align: center; color: #ff0000; border-bottom: 3px solid #ff0000; font-size: 2rem; font-weight: bold; text-transform: uppercase; }
+        .info-bar { display: flex; justify-content: space-between; background: #111; padding: 15px; color: #ffb703; border-radius: 5px; font-size: 1.2rem; }
         .canais-box { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 15px; background: #080808; border-bottom: 1px solid #444; }
         .btn-atalho { background: #222; color: #00d4ff; padding: 10px 20px; text-decoration: none; border-radius: 5px; border: 1px solid #444; font-weight: bold; transition: 0.3s; cursor: pointer; }
-        .btn-atalho:hover { background: #ff4500; color: #fff; border-color: #ff4500; }
-        #noticias-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; margin-top: 20px; }
+        .btn-atalho:hover { background: #ff4500; color: #fff; }
+        .noticia-item { background: #1a1a1a; border-left: 5px solid #ff0000; padding: 15px; border-radius: 4px; font-size: 0.95rem; margin-bottom: 5px; }
+        #noticias-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
     </style>
 </head>
 <body>
@@ -23,15 +24,11 @@
     <div class="canais-box">
         <a class="btn-atalho" href="https://www.youtube.com/@calandrino68" target="_blank">📺 Nostalgia Games</a>
         <a class="btn-atalho" href="https://www.youtube.com/@BreakingNewsShow" target="_blank">📰 Breaking News Show</a>
-        <a class="btn-atalho" href="https://github.com/calango68/painel-calandrino" target="_blank">🔗 Canais Amigos</a>
-        <span class="btn-atalho" style="color: #0cff00;">🤖 Gemini AI 2026</span>
+        <a class="btn-atalho" href="https://github.com/calango68" target="_blank">🔗 Meu GitHub</a>
+        <span class="btn-atalho" style="color: #0cff00;">🤖 Gemini 2026</span>
     </div>
     <script>
-        function atualizarRelogio() {
-            const agora = new Date();
-            document.getElementById('relogio').textContent = agora.toLocaleTimeString('pt-BR');
-        }
-        setInterval(atualizarRelogio, 1000);
-        atualizarRelogio();
+        function atualizarRelogio() { document.getElementById('relogio').textContent = new Date().toLocaleTimeString('pt-BR'); }
+        setInterval(atualizarRelogio, 1000); atualizarRelogio();
     </script>
     <div id="noticias-grid">
