@@ -4,47 +4,34 @@
     <meta charset="UTF-8">
     <title>Painel Calandrino</title>
     <style>
-        /* Define o fundo e cria as colunas automáticas */
-        body { 
-            background: #000; color: #fff; font-family: sans-serif; padding: 20px; 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            gap: 20px; 
-            align-items: start;
-        }
-
-        /* Faz o cabeçalho ocupar a largura inteira */
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
         .header, .info-bar, .canais-box { grid-column: 1 / -1; }
-
         .header { text-align: center; color: #ff0000; border-bottom: 3px solid #ff0000; font-size: 2rem; font-weight: bold; }
-        .info-bar { display: flex; justify-content: space-between; background: #111; padding: 10px; color: #ffb703; border-radius: 5px; margin-top: 10px; }
-        .canais-box { display: flex; gap: 20px; justify-content: center; padding: 10px; font-size: 0.9rem; border-bottom: 1px solid #333; }
-        .canal-link { color: #00d4ff; text-decoration: none; }
-
-        /* Estilo para as notícias que o script vai jogar no final do arquivo */
+        .info-bar { display: flex; justify-content: space-between; background: #111; padding: 15px; color: #ffb703; border-radius: 5px; margin-top: 10px; font-size: 1.2rem; }
+        .canais-box { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; padding: 15px; background: #080808; border-bottom: 1px solid #333; }
+        .btn-atalho { background: #222; color: #00d4ff; padding: 10px 20px; text-decoration: none; border-radius: 5px; border: 1px solid #444; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .btn-atalho:hover { background: #ff4500; color: #fff; border-color: #ff4500; }
         #noticias-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
     </style>
 </head>
 <body>
     <div class="header">BREAKING NEWS <br> PAINEL CALANDRINO</div>
-
     <div class="info-bar">
         <span>NOSTALGIA GAMES | BREAKING NEWS SHOW</span>
         <span id="relogio">00:00:00</span>
     </div>
-
     <div class="canais-box">
-        <a class="canal-link" href="#">Nostalgia Games</a>
-        <a class="canal-link" href="#">Canais Amigos</a>
-        <span>Horário Gemini: 16:01</span>
+        <a class="btn-atalho" href="https://www.youtube.com/@calandrino68" target="_blank">📺 Nostalgia Games</a>
+        <a class="btn-atalho" href="https://www.youtube.com/@BreakingNewsShow" target="_blank">📰 Breaking News Show</a>
+        <a class="btn-atalho" href="https://github.com/calango68/painel-calandrino" target="_blank">🔗 Canais Amigos</a>
+        <span class="btn-atalho" style="color: #00ff00;">🤖 Gemini AI 2026</span>
     </div>
-
     <script>
         function atualizarRelogio() {
             const agora = new Date();
             document.getElementById('relogio').textContent = agora.toLocaleTimeString('pt-BR');
         }
         setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
     </script>
-
     <div id="noticias-grid">
