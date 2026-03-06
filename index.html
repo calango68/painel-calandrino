@@ -3,334 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>César Calandrino - Dashboard Profissional</title>
+    <title>Painel Calandrino - Breaking News</title>
     <style>
-        :root {
-            --bg: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --red: #c0392b;
-            --blue: #2980b9;
-            --text: #ecf0f1;
-        }
-
+        /* Estilo Base */
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        .card {
-            background: var(--card-bg);
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             padding: 20px;
-            border-radius: 15px;
+        }
+
+        h1 {
             text-align: center;
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid #333;
-            transition: 0.3s;
+            color: #ff4500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
         }
 
-        .card:hover { transform: scale(1.02); border-color: var(--red); }
-        .card.nostalgia:hover { border-color: var(--blue); }
+        /* GRID DE COLUNAS - O Segredo da Organização */
+        #noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-        /* Seção de Notícias Atualizadas */
-        #news-box {
-            background: #111;
-            border-left: 5px solid var(--red);
+        /* CARD DE NOTÍCIA INDIVIDUAL */
+        .noticia-card {
+            background: #1a1a1a;
+            border-left: 5px solid #ff4500;
             padding: 15px;
-            margin-top: 25px;
-            width: 100%;
-            max-width: 1060px;
-            border-radius: 5px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
         }
 
-        .news-item { margin-bottom: 10px; font-size: 0.9rem; border-bottom: 1px solid #222; padding-bottom: 5px; }
-        
-        .friends-list { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
-        .friend-btn { background: #333; padding: 10px 20px; border-radius: 20px; text-decoration: none; color: white; font-size: 0.8rem; }
+        .noticia-card:hover {
+            transform: scale(1.02);
+            background: #252525;
+        }
+
+        .fonte {
+            font-weight: bold;
+            color: #ff9800;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .manchete {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Central Calandrino</h1>
+    <h1>Breaking News - Painel Calandrino</h1>
 
-    <div class="container">
-        <a href="https://www.youtube.com/@calandrinocesar-n" target="_blank" class="card">
-            <h2>📰 Breaking News Show</h2>
-            <p>Cesar Renato - Notícias em Tempo Real</p>
-        </a>
-
-        <a href="https://www.youtube.com/@calandrinocesar" target="_blank" class="card nostalgia">
-            <h2>🕹️ Nostalgia Games</h2>
-            <p>César Calandrino - Clássicos e Arcades</p>
-        </a>
-    </div>
-
-    <div id="news-box">
-        <h3>🔥 Notícias de Hoje (Atualizadas)</h3>
-        <div id="news-content">Carregando notícias de última hora...</div>
-    </div>
-
-    <div class="friends-list">
-        <a href="https://www.youtube.com/@evandromaia2939" target="_blank" class="friend-btn">Evandro Maia</a>
-        <a href="https://www.youtube.com/@SouInsano" target="_blank" class="friend-btn">Sou Insano</a>
-        <a href="https://www.youtube.com/@osafenado2026" target="_blank" class="friend-btn">Junka Safenado</a>
-    </div>
+    <div id="noticias-grid">
+        </div>
 
     <script>
-        // Função simples para buscar notícias via RSS do Google
-        async function fetchNews() {
-            try {
-                const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419');
-                const data = await response.json();
-                const content = document.getElementById('news-content');
-                content.innerHTML = '';
-                
-                data.items.slice(0, 5).forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'news-item';
-                    div.innerHTML = `<strong>•</strong> ${item.title}`;
-                    content.appendChild(div);
-                });
-            } catch (e) {
-                document.getElementById('news-content').innerText = "Abra o navegador para atualizar as notícias.";
-            }
+        // Função simples para adicionar notícias (exemplo para o seu sistema)
+        function adicionarNoticia(fonte, texto) {
+            const grid = document.getElementById('noticias-grid');
+            const card = `
+                <div class="noticia-card">
+                    <span class="fonte">[${fonte}]</span>
+                    <div class="manchete">${texto}</div>
+                </div>
+            `;
+            grid.innerHTML += card;
         }
-        fetchNews();
+        
+        // Exemplo de uso: adicionarNoticia('G1 Mundo', 'Exemplo de notícia organizada...');
     </script>
-
 </body>
 </html>
-Atalhos e Imprensa de HojeGemini AIBusca GooglePrincipais Notícias:
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] ‘A verdade da guerra social’: o manual dos EUA para a guerra com o Irão
-[Al Jazeera] Iranianos ‘prontos para desonrar’ as tropas dos EUA se invadirem, diz alto funcionário
-[Al Jazeera] A turbulência emocional atinge os iranianos que observam o desenrolar do conflito no exterior
-[Al Jazeera] Líderes da UE expressam solidariedade aos países do Golfo em meio aos ataques iranianos
-[Al Jazeera] Vídeos mostram destruição após ataques dos EUA e de Israel ao Irã
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-[G1 Mundo] Trump diz que 'precisa se envolver' na escolha do novo líder supremo do Irã; ACOMPANHE
-[G1 Mundo] Israel mostra imagens de jato F-35 abatendo caça iraniana nos céus de Teerã;VÍDEO
-[G1 Mundo] Libaneses fogem de Beirute em meio a ataques; mortos no país já passam de 100 e Hezbollah diz que não irá se render
-[G1 Mundo] Trump diz que 'precisa se envolver' na escolha do novo líder supremo do Irã e que filho de Khamenei como sucessor é 'inaceitável'
-[G1 Mundo] INFOGRÁFICOS: veja ataques no 6º dia da guerra entre EUA, Israel e Irã e entenda as bombas gravitacionais
-[G1 Mundo] As imagens de satélite que mostram as instalações nucleares e da marinha iraniana atingidas pelos ataques dos EUA e Israel
-[G1 Mundo] Casa Branca posta montagem de ataques ao Irã inspirada em videogame e com 'pontuação por mortes'; veja VÍDEO
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[Al Jazeera] ‘A verdade da guerra social’: o manual dos EUA para a guerra com o Irão
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-[G1 Mundo] Trump diz que 'precisa se envolver' na escolha do novo líder supremo do Irã; ACOMPANHE
-[G1 Mundo] Israel mostra imagens de jato F-35 abatendo caça iraniana nos céus de Teerã;VÍDEO
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[Al Jazeera] ‘A verdade da guerra social’: o manual dos EUA para a guerra com o Irão
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-[G1 Mundo] Trump diz que 'precisa se envolver' na escolha do novo líder supremo do Irã; ACOMPANHE
-[G1 Mundo] Israel mostra imagens de jato F-35 abatendo caça iraniana nos céus de Teerã;VÍDEO
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Câmara dos Deputados dos EUA votará último esforço para deter a guerra no Irã
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[Al Jazeera] ‘A verdade da guerra social’: o manual dos EUA para a guerra com o Irão
-[CNN Brasil] OMS registra 13 ataques a instalações de saúde no Irã e mortes de médicos
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-[G1 Mundo] Trump diz que 'precisa se envolver' na escolha do novo líder supremo do Irã; ACOMPANHE
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Trump expressa apoio a possível ofensiva curda no Irã
-[Al Jazeera] Israel cancela orações de sexta-feira na mesquita de Al-Aqsa em meio ao conflito com o Irã
-[Al Jazeera] Câmara dos Deputados dos EUA votará último esforço para deter a guerra no Irã
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[CNN Brasil] Ouro fecha em queda com dólar mais forte e conflito no Oriente Médio
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Trump expressa apoio a possível ofensiva curda no Irã
-[Al Jazeera] Israel cancela orações de sexta-feira na mesquita de Al-Aqsa em meio ao conflito com o Irã
-[Al Jazeera] Câmara dos Deputados dos EUA votará último esforço para deter a guerra no Irã
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[CNN Brasil] Ouro fecha em queda com dólar mais forte e conflito no Oriente Médio
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Trump expressa apoio a possível ofensiva curda no Irã
-[Al Jazeera] Israel cancela orações de sexta-feira na mesquita de Al-Aqsa em meio ao conflito com o Irã
-[Al Jazeera] Câmara dos Deputados dos EUA votará último esforço para deter a guerra no Irã
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[CNN Brasil] Ouro fecha em queda com dólar mais forte e conflito no Oriente Médio
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Trump expressa apoio a possível ofensiva curda no Irã
-[Al Jazeera] Israel cancela orações de sexta-feira na mesquita de Al-Aqsa em meio ao conflito com o Irã
-[Al Jazeera] Câmara dos Deputados dos EUA votará último esforço para deter a guerra no Irã
-[Al Jazeera] Sri Lanka evacua tripulação do segundo navio iraniano depois que os EUA afundaram o IRIS Dena
-[Al Jazeera] Israel e EUA intensificam ataques ao Irã, visando casas, hospitais e estádios
-[CNN Brasil] Ouro fecha em queda com dólar mais forte e conflito no Oriente Médio
-[G1 Mundo] Otan aumenta nível de alerta após míssil iraniano ser abatido na Turquia
-[G1 Mundo] É #FAKE vídeo de menino chorando diante de caixão de soldado americano morto no Irã; cena foi criada com inteligência artificial
-[G1 Mundo] Como a Europa foi arrastada para o conflito no Oriente Médio
-[G1 Mundo] França enviará veículos blindados ao Líbano em meio à guerra no Oriente Médio, diz Macron
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] ‘Nenhum acordo com o Irão, exceto rendição incondicional’, diz Trump
-[Al Jazeera] Catar alerta que guerra no Irã pode interromper as exportações de energia do Golfo “dentro de semanas”
-[Al Jazeera] Escola primária em Teerã foi atingida, diz Ministério das Relações Exteriores do Irã
-[Al Jazeera] FIFA e AFC pedem proteção às jogadoras de futebol iranianas após ameaça de “traidores”
-[Al Jazeera] ‘Levantamento curdo no Irã é improvável sem a proteção dos EUA-Israel’
-[Al Jazeera] Combatentes curdos iranianos prontos para uma operação terrestre ‘se surgir oportunidade’
-[Al Jazeera] Messi censurado por se reunir e aplaudir Trump em meio a ataques dos EUA ao Irã
-[Al Jazeera] Moscou vê aumento significativo na demanda por petróleo e gás russo em meio à guerra no Irã
-[Al Jazeera] ‘Nós conhecemos Shaheds’: Ucrânia apregoa experiência em drones na guerra EUA-Israel com o Irã
-[Al Jazeera] No meio da guerra no Irão, irá a Rússia explorar a escassez de mísseis Patriot na Ucrânia?
-[CNN Brasil] Segundo relatos, Irã teve a noite com maior número de bombardeios
-[CNN Brasil] À CNN, Trump diz que não está preocupado se Irã não for democrático
-[G1 Mundo] Em uma semana, guerra no Irã produz efeitos drásticos no Oriente Médio e mensagens contraditórias dos EUA
-[G1 Mundo] Trump exige 'rendição incondicional' do Irã
-[G1 Mundo] Guerra no Irã: Israel anuncia onda de ataques contra infraestrutura do 'regime terrorista'
-[G1 Mundo] Análise indica que escola no Irã foi atingida durante ataque dos EUA a base militar, diz jornal
-[G1 Mundo] Quanto mais a guerra se prolonga, maior é o risco de terrorismo e ações de aliados do Irã pelo mundo, diz ex-subsecretário de Estado do governo Trump
-[G1 Mundo] Resistência e dissuasão: a estratégia de alto risco do Irã para a guerra
-[G1 Mundo] Israel divulga VÍDEO de ataque a bunker que era de Ali Khamenei, e diz que líder supremo 'foi morto antes que pudesse o utilizar'
-[G1 Mundo] EUA anunciam nova fase da guerra e intensifica ataques em Teerã; Israel bombardeia Beirute, capital do Líbano; ACOMPANHE
-[G1 Mundo] Rússia ajudou Irã a localizar alvos dos EUA atacados no Oriente Médio, diz jornal
-[G1 Mundo] EUA e Israel anunciam 'nova fase' da guerra contra o Irã com 'aumento drástico' de poder de fogo e ataques ao regime
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
