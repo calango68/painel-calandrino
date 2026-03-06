@@ -2,115 +2,30 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Calandrino - Breaking News</title>
+    <title>Breaking News - Calandrino</title>
     <style>
-        /* Estilo Base */
-        body {
-            background-color: #0d0d0d;
-            color: #e0e0e0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #ff4500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-
-        /* GRID DE COLUNAS - O Segredo da Organização */
+        body { background-color: #0d0d0d; color: #eee; font-family: sans-serif; padding: 20px; }
+        h1 { text-align: center; color: #ff4500; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        
+        /* Sistema de colunas que aceita texto puro */
         #noticias-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            white-space: pre-wrap; /* Mantém as quebras de linha do seu script */
         }
 
-        /* CARD DE NOTÍCIA INDIVIDUAL */
-        .noticia-card {
+        .noticia-item {
             background: #1a1a1a;
             border-left: 5px solid #ff4500;
             padding: 15px;
             border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-
-        .noticia-card:hover {
-            transform: scale(1.02);
-            background: #252525;
-        }
-
-        .fonte {
-            font-weight: bold;
-            color: #ff9800;
-            font-size: 0.8rem;
+            margin-bottom: 10px;
             display: block;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .manchete {
-            font-size: 1rem;
-            line-height: 1.4;
         }
     </style>
 </head>
 <body>
-
     <h1>Breaking News - Painel Calandrino</h1>
+    <pre id="noticias-grid">
 
-    <div id="noticias-grid">
-        </div>
-
-    <script>
-        // Função simples para adicionar notícias (exemplo para o seu sistema)
-        function adicionarNoticia(fonte, texto) {
-            const grid = document.getElementById('noticias-grid');
-            const card = `
-                <div class="noticia-card">
-                    <span class="fonte">[${fonte}]</span>
-                    <div class="manchete">${texto}</div>
-                </div>
-            `;
-            grid.innerHTML += card;
-        }
-        
-        // Exemplo de uso: adicionarNoticia('G1 Mundo', 'Exemplo de notícia organizada...');
-    </script>
-</body>
-</html>
-/home/calango/noticia_ira.wav
-
-
---- Buscando e Traduzindo Notícias para o Canal ---
-[Al Jazeera] Crescem os apelos para uma investigação independente sobre o ataque mortal a meninas iranianas em escolas
-[Al Jazeera] Casa Branca publica vídeo sobre ‘justiça americana’ dias após ataque a escola no Irã
-[Al Jazeera] Será que Donald Trump não conseguiu vender a guerra do Irão ao mundo?
-[Al Jazeera] Oposição curda pondera se deve confiar em Trump após apelo à revolta no Irão
-[Al Jazeera] ‘Nenhum acordo com o Irão, exceto rendição incondicional’, diz Trump
-[Al Jazeera] Catar alerta que guerra no Irã pode interromper as exportações de energia do Golfo “dentro de semanas”
-[CNN Brasil] Em meio à Guerra, CR7 deixa Arábia Saudita para tratar lesão na Espanha
-[CNN Brasil] Fontes dizem que Rússia auxilia Irã com informações sobre alvos dos EUA
-[CNN Brasil] Museu do Ipiranga abre curso sobre história da cartografia paulista
-[G1 Mundo] Trump diz não se importar se novo governo do Irã será democrático
-[G1 Mundo] Por que invasão por terra no Irã pode estar a caminho - mas não por soldados americanos ou israelenses
-[G1 Mundo] Em uma semana, guerra no Irã produz efeitos drásticos no Oriente Médio e mensagens contraditórias dos EUA
-[G1 Mundo] Trump exige 'rendição incondicional' do Irã
-[G1 Mundo] Guerra no Irã: Israel anuncia onda de ataques contra infraestrutura do 'regime terrorista'
-[G1 Mundo] Análise indica que escola no Irã foi atingida durante ataque dos EUA a base militar, diz jornal
-[G1 Mundo] Quanto mais a guerra se prolonga, maior é o risco de terrorismo e ações de aliados do Irã pelo mundo, diz ex-subsecretário de Estado do governo Trump
-
-[1/4] Gerando narração solene...
-[2/4] Criando Thumbnail...
-[3/4] Criando corpo do vídeo...
-[4/4] Colando abertura no vídeo...
-
-Sucesso! Vídeo Final: /home/calango/video_noticia_ira_final.mp4
-
-Reproduzindo áudio para conferência...
