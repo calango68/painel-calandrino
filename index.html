@@ -76,20 +76,48 @@
 </section>
 
 <script>
-    async function carregarNoticias() {
-        const resp = await fetch('noticias_ticker.txt?v=' + Math.random());
-        const html = await resp.text();
-        // Divide o conteúdo: as 5 primeiras para o bloco top, o resto para o main
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        const cards = Array.from(temp.querySelectorAll('.noticia-card'));
+        async function carregarNoticias() {
+            try {
+                const resp = await fetch('noticias_ticker.txt?v=' + Math.random());
+                const html = await resp.text();
+                
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const cards = Array.from(temp.querySelectorAll('.noticia-card'));
+                
+                // Distribui as notícias nos containers corretos
+                const containerTop = document.getElementById('container-top-5');
+                const containerGeral = document.getElementById('container-noticias');
+
+                if (containerTop && containerGeral) {
+                    containerTop.innerHTML = cards.slice(0, 5).map(c => c.outerHTML).join('');
+                    containerGeral.innerHTML = cards.slice(5).map(c => c.outerHTML).join('');
+                }
+            } catch (e) {
+                console.error("Erro ao carregar notícias:", e);
+            }
+        }
+        // Atualiza a cada 5 minutos (300.000ms)
+        setInterval(carregarNoticias, 300000);
+        carregarNoticias();
+    </script>
+
+    <div class="utilidades-section" style="margin-top: 40px; padding: 20px; border-top: 1px solid #333; text-align: center;">
+        <h3 style="color: #ff9800;">🚀 Ferramentas e Comunidade</h3>
+        <p style="color: #ccc;">Acesse o Google ou experimente a Inteligência Artificial que ajuda o Canal:</p>
         
-        document.getElementById('container-top-5').innerHTML = cards.slice(0, 5).map(c => c.outerHTML).join('');
-        document.getElementById('container-noticias').innerHTML = cards.slice(5).map(c => c.outerHTML).join('');
-    }
-    setInterval(carregarNoticias, 300000);
-    carregarNoticias();
-</script>
+        <div class="links-utilitarios" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="https://www.google.com" target="_blank" style="background: #4285f4; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">🔍 Pesquisar no Google</a>
+            
+            <a href="https://gemini.google.com" target="_blank" style="background: #8e44ad; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">✨ Experimentar o Gemini</a>
+            
+            <a href="https://github.com/calango68/painel-calandrino" target="_blank" style="background: #333; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">🛠️ Ver Código no GitHub</a>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.9em; color: #888;">
+            Quer fazer parte do projeto? Cadastre-se e use as ferramentas oficiais do Google com o Breaking News Show.
+        </p>
+    </div>
 
 </body>
 </html>
