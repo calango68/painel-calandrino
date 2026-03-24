@@ -3,62 +3,130 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Breaking News Show - Live</title>
+    <title>Breaking News Show - Cesar Calandrino</title>
     <style>
         body { 
             background: #000 url('https://raw.githubusercontent.com/calango68/painel-calandrino/main/plantao_hoje.png') no-repeat center center fixed; 
             background-size: cover; color: white; font-family: Arial, sans-serif; margin: 0; overflow-x: hidden;
         }
         .topo { background: rgba(0,0,0,0.9); padding: 15px; border-bottom: 4px solid #cc0000; text-align: center; }
-        #relogio { font-size: 60px; font-weight: bold; text-align: center; color: #ffcc00; margin-top: 10px; }
-        .container-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; margin-bottom: 100px; }
-        .noticia-card { background: rgba(0,0,0,0.85); border: 1px solid #444; padding: 15px; border-radius: 10px; width: 320px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        #relogio { font-size: 50px; font-weight: bold; text-align: center; color: #ffcc00; margin-top: 10px; }
+        .container-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; }
+        .noticia-card { background: rgba(0,0,0,0.85); border: 1px solid #444; padding: 15px; border-radius: 10px; width: 300px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .canais-amigos { background: rgba(204, 0, 0, 0.1); border-top: 2px solid #cc0000; padding: 30px; text-align: center; margin-top: 40px; }
+        .btn-canal { display: inline-block; background: #333; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; font-weight: bold; transition: 0.3s; }
+        .btn-canal:hover { background: #cc0000; }
         @keyframes tremer { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, 2px); } 100% { transform: translate(1px, -1px); } }
-        @keyframes brilhar { 0% { filter: drop-shadow(0 0 5px #00ff00); } 50% { filter: drop-shadow(0 0 20px #00ff00); } 100% { filter: drop-shadow(0 0 5px #00ff00); } }
-        .robo-ativo { animation: tremer 0.2s infinite, brilhar 0.8s infinite; }
-        .vu-meter { display: flex; justify-content: center; align-items: flex-end; height: 30px; gap: 4px; margin-bottom: 10px; visibility: hidden; }
-        .bar { width: 8px; background: #00ff00; border-radius: 2px; animation: bounce 0.5s infinite alternate; }
-        @keyframes bounce { from { height: 5px; } to { height: 25px; } }
+        .robo-ativo { animation: tremer 0.2s infinite; filter: drop-shadow(0 0 10px #00ff00); }
     </style>
 </head>
 <body>
     <div class="topo"><strong>🔴 BREAKING NEWS SHOW | Cesar Calandrino</strong></div>
     <div id="relogio">00:00:00</div>
+    
     <div style="text-align: center; margin-top: 15px;">
-        <div id="visualizer" class="vu-meter"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <img id="imagemRobo" src="apresentador.png" style="width: 220px; transition: 0.3s;">
+        <img id="imagemRobo" src="apresentador.png" style="width: 200px; transition: 0.3s;">
         <br>
         <button id="btnOuvir" onclick="tocarNoticias()" style="background: #cc0000; color: white; padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 1.1rem;">
             🎙️ OUVIR NOTÍCIAS ATUALIZADAS
         </button>
     </div>
+
     <audio id="audioRobo" src="noticia_ira.mp3"></audio>
-    <div class="container-cards"><div class="noticia-card"><strong>Fonte ICL Notícias</strong><p>Governo propõe subsídio de R$ 1,20 ao diesel após impasse do ICMS</p></div><div class="noticia-card"><strong>Fonte ICL Notícias</strong><p>Em reestruturação, Correios anunciam escala 12×36 em alguns setores</p></div><div class="noticia-card"><strong>Fonte ICL Notícias</strong><p>Conselho do FGTS amplia renda e financiamento do Minha Casa, Minha Vida</p></div><div class="noticia-card"><strong>Fonte DW Europa</strong><p>O custo bilionário da guerra dos EUA contra o Irã</p></div><div class="noticia-card"><strong>Fonte DW Europa</strong><p>Presidente alemão diz que guerra no Irã é um "erro desastroso"</p></div><div class="noticia-card"><strong>Fonte DW Europa</strong><p>EUA enviarão mais soldados ao Oriente Médio</p></div><div class="noticia-card"><strong>Fonte Al Jazeera</strong><p>Explosão e incêndio em arranha-céu em Erbil em meio a ataques iranianos</p></div><div class="noticia-card"><strong>Fonte Al Jazeera</strong><p>Refugiados palestinos no Líbano enfrentam outro deslocamento forçado</p></div><div class="noticia-card"><strong>Fonte Al Jazeera</strong><p>Fabricante de armas prospera em meio à guerra EUA-Israel contra o Irã</p></div><div class="noticia-card"><strong>Fonte CNN Brasil</strong><p>Vini Jr. e Raphinha se apresentam à Seleção Brasileira para Data Fifa; veja</p></div><div class="noticia-card"><strong>Fonte CNN Brasil</strong><p>China adota medida para lidar com alta do petróleo devido à guerra</p></div><div class="noticia-card"><strong>Fonte CNN Brasil</strong><p>Trump diz que Hegseth ficou “decepcionado” com possibilidade de cessar-fogo</p></div><div class="noticia-card"><strong>Fonte G1 Mundo</strong><p>Governo Milei divulga vídeo crítico a opositores da ditadura no aniversário de 50 anos de golpe militar que matou 30 mil na Argentina</p></div><div class="noticia-card"><strong>Fonte G1 Mundo</strong><p>EUA enviam ao Irã proposta de plano de paz com 15 pontos para encerrar a guerra, diz jornal</p></div><div class="noticia-card"><strong>Fonte G1 Mundo</strong><p>Sobe para 69 o número de mortos em acidente de avião militar na Colômbia</p></div></div>
+
+    <div class="container-cards">
+        
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
+                <p style="margin: 0; font-size: 0.95rem;">PRF que matou ex-namorada no ES respondia por importunação sexual a colega</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
+                <p style="margin: 0; font-size: 0.95rem;">Bachelet perde apoio do Chile e será candidata pelo Brasil para liderar a ONU</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
+                <p style="margin: 0; font-size: 0.95rem;">50 anos do golpe na Argentina: Milei ressuscita ‘fantasmas’ contra inimigos políticos</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
+                <p style="margin: 0; font-size: 0.95rem;">O custo bilionário da guerra dos EUA contra o Irã</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
+                <p style="margin: 0; font-size: 0.95rem;">Presidente alemão diz que guerra no Irã é um "erro desastroso"</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
+                <p style="margin: 0; font-size: 0.95rem;">EUA enviarão mais soldados ao Oriente Médio</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
+                <p style="margin: 0; font-size: 0.95rem;">Explosão e incêndio em arranha-céu em Erbil em meio a ataques iranianos</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
+                <p style="margin: 0; font-size: 0.95rem;">Refugiados palestinos no Líbano enfrentam outro deslocamento forçado</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
+                <p style="margin: 0; font-size: 0.95rem;">Fabricante de armas prospera em meio à guerra EUA-Israel contra o Irã</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">Agentes do ICE em aeroportos são um “insulto”, dizem líderes sindicais</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">Governo estima arrecadação extra de R$ 17 bi com petróleo em meio à guerra</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">Argentinos vão às ruas no dia que marca os 50 anos do golpe militar</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
+                <p style="margin: 0; font-size: 0.95rem;">Governo Milei divulga vídeo crítico a opositores da ditadura no aniversário de 50 anos de golpe militar que matou 30 mil na Argentina</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
+                <p style="margin: 0; font-size: 0.95rem;">EUA enviam ao Irã proposta de plano de paz com 15 pontos para encerrar a guerra, diz jornal</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
+                <p style="margin: 0; font-size: 0.95rem;">Sobe para 69 o número de mortos em acidente de avião militar na Colômbia</p>
+            </div>
+    </div>
+
+    <div class="canais-amigos">
+        <h2 style="color: #ffcc00; margin-bottom: 20px;">📺 CANAIS AMIGOS</h2>
+        <a href="https://www.youtube.com/@SouInsano" target="_blank" class="btn-canal">🔥 SOU INSANO</a>
+        <a href="https://www.youtube.com/@namiradodebate" target="_blank" class="btn-canal">🎤 NA MIRA DO DEBATE</a>
+        <a href="https://www.youtube.com/@calandrinocesar" target="_blank" class="btn-canal">🕹️ NOSTALGIA GAMES</a>
+    </div>
+
     <script>
         function atualizarRelogio() { document.getElementById('relogio').innerText = new Date().toLocaleTimeString('pt-BR'); }
         setInterval(atualizarRelogio, 1000);
         atualizarRelogio();
+
         function tocarNoticias() {
             const audio = document.getElementById('audioRobo');
             const botao = document.getElementById('btnOuvir');
             const imagem = document.getElementById('imagemRobo');
-            const vu = document.getElementById('visualizer');
             botao.innerText = "⌛ CARREGANDO...";
-            setTimeout(() => {
-                audio.src = "noticia_ira.mp3?t=" + new Date().getTime();
-                audio.play().then(() => {
-                    botao.innerText = "🔊 ROBÔ FALANDO...";
-                    botao.style.background = "#00ff00";
-                    if(imagem) imagem.classList.add('robo-ativo');
-                    if(vu) vu.style.visibility = 'visible';
-                    audio.onended = () => {
-                        botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
-                        botao.style.background = "#cc0000";
-                        if(imagem) imagem.classList.remove('robo-ativo');
-                        if(vu) vu.style.visibility = 'hidden';
-                    };
-                });
-            }, 500);
+            
+            audio.src = "noticia_ira.mp3?t=" + new Date().getTime();
+            audio.play().then(() => {
+                botao.innerText = "🔊 ROBÔ FALANDO...";
+                botao.style.background = "#00ff00";
+                imagem.classList.add('robo-ativo');
+                audio.onended = () => {
+                    botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
+                    botao.style.background = "#cc0000";
+                    imagem.classList.remove('robo-ativo');
+                };
+            });
         }
     </script>
 </body>
