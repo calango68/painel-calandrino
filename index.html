@@ -1,123 +1,65 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Últimas Notícias - Breaking News" Cesar Calandrino</title>
+    <title>Breaking News Show - Live</title>
     <style>
-        body {
-            background-color: #05070a;
-            background-image: radial-gradient(circle at top right, #101a2d, #05070a);
-            color: #e0e0e0;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0; padding: 20px; line-height: 1.6;
+        body { 
+            background: #000 url('https://raw.githubusercontent.com/calango68/painel-calandrino/main/plantao_hoje.png') no-repeat center center fixed; 
+            background-size: cover; color: white; font-family: Arial, sans-serif; margin: 0; overflow-x: hidden;
         }
-
-        header {
-            display: flex; align-items: center; justify-content: center;
-            border-bottom: 2px solid #ff8c00; padding-bottom: 20px; margin-bottom: 30px; gap: 20px;
-        }
-
-        /* Rosto do Robô Humanizado no lugar do círculo */
-        .robo-head {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 2px solid #00f2ff; box-shadow: 0 0 15px #00f2ff;
-            object-fit: cover; background-color: #111;
-        }
-
-        h1 { margin: 0; font-size: 2rem; color: #00f2ff; text-transform: uppercase; }
-        h1 span { color: #ff8c00; display: block; font-size: 1.2rem; }
-
-        /* Estilo para o bloco Top 5 */
-        .top5-container {
-            max-width: 1200px; margin: 0 auto 30px auto;
-            border: 1px solid #00f2ff; border-radius: 10px;
-            background: rgba(0, 242, 255, 0.05); padding: 15px;
-        }
-
-        .noticia-card {
-            background: rgba(255, 255, 255, 0.03); border-left: 5px solid #ff8c00;
-            padding: 15px; margin-bottom: 10px; border-radius: 5px;
-        }
-
-        .btn-canal {
-            display: inline-block; margin: 5px; padding: 10px 20px;
-            background: #ff8c00; color: white; text-decoration: none;
-            border-radius: 5px; font-weight: bold;
-        }
+        .topo { background: rgba(0,0,0,0.9); padding: 15px; border-bottom: 4px solid #cc0000; text-align: center; }
+        #relogio { font-size: 60px; font-weight: bold; text-align: center; color: #ffcc00; margin-top: 10px; }
+        .container-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; margin-bottom: 100px; }
+        .noticia-card { background: rgba(0,0,0,0.85); border: 1px solid #444; padding: 15px; border-radius: 10px; width: 320px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        @keyframes tremer { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, 2px); } 100% { transform: translate(1px, -1px); } }
+        @keyframes brilhar { 0% { filter: drop-shadow(0 0 5px #00ff00); } 50% { filter: drop-shadow(0 0 20px #00ff00); } 100% { filter: drop-shadow(0 0 5px #00ff00); } }
+        .robo-ativo { animation: tremer 0.2s infinite, brilhar 0.8s infinite; }
+        .vu-meter { display: flex; justify-content: center; align-items: flex-end; height: 30px; gap: 4px; margin-bottom: 10px; visibility: hidden; }
+        .bar { width: 8px; background: #00ff00; border-radius: 2px; animation: bounce 0.5s infinite alternate; }
+        @keyframes bounce { from { height: 5px; } to { height: 25px; } }
     </style>
 </head>
 <body>
-
-<header>
-    <img src="robo.png" alt="Cesar Calandrino AI" class="robo-head">
-    <div>
-        <h1>"Últimas Notícias - Breaking News"</h1>
-        <span>Cesar Calandrino</span>
+    <div class="topo"><strong>🔴 BREAKING NEWS SHOW | Cesar Calandrino</strong></div>
+    <div id="relogio">00:00:00</div>
+    <div style="text-align: center; margin-top: 15px;">
+        <div id="visualizer" class="vu-meter"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        <img id="imagemRobo" src="apresentador.png" style="width: 220px; transition: 0.3s;">
+        <br>
+        <button id="btnOuvir" onclick="tocarNoticias()" style="background: #cc0000; color: white; padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 1.1rem;">
+            🎙️ OUVIR NOTÍCIAS ATUALIZADAS
+        </button>
     </div>
-</header>
-
-<div class="top5-container">
-    <h2 style="color: #00f2ff; margin-top: 0;">🔥 TOP 5: Política & Internacional</h2>
-    <div id="container-top-5">
-        </div>
-</div>
-
-<main id="container-noticias">
-    </main>
-
-<section style="text-align: center; margin-top: 50px; background: rgba(0,0,0,0.5); padding: 20px;">
-    <h3>📡 Canais Amigos</h3>
-    <a href="https://www.youtube.com/@SouInsano" target="_blank" class="btn-canal">🔥 Sou Insano</a>
-    <a href="https://www.youtube.com/@evandromaia2939" target="_blank" class="btn-canal">🎙️ Evandro Maia</a>
-    <a href="https://www.youtube.com/@osafenado2026" target="_blank" class="btn-canal">⚡ Safenado Elétrico</a>
-    <a href="https://www.youtube.com/@namiradodebate" target="_blank" class="btn-canal">⚖️ Na Mira do Debate</a>
-    <a href="https://www.youtube.com/@calandrinocesar" target="_blank" class="btn-canal">🕹️ Nostalgia Games</a>
-</section>
-
-<script>
-        async function carregarNoticias() {
-            try {
-                const resp = await fetch('noticias_ticker.txt?v=' + Math.random());
-                const html = await resp.text();
-                
-                const temp = document.createElement('div');
-                temp.innerHTML = html;
-                const cards = Array.from(temp.querySelectorAll('.noticia-card'));
-                
-                // Distribui as notícias nos containers corretos
-                const containerTop = document.getElementById('container-top-5');
-                const containerGeral = document.getElementById('container-noticias');
-
-                if (containerTop && containerGeral) {
-                    containerTop.innerHTML = cards.slice(0, 5).map(c => c.outerHTML).join('');
-                    containerGeral.innerHTML = cards.slice(5).map(c => c.outerHTML).join('');
-                }
-            } catch (e) {
-                console.error("Erro ao carregar notícias:", e);
-            }
+    <audio id="audioRobo" src="noticia_ira.mp3"></audio>
+    <div class="container-cards"><div class="noticia-card"><strong>Fonte ICL Notícias</strong><p>Governo propõe subsídio de R$ 1,20 ao diesel após impasse do ICMS</p></div><div class="noticia-card"><strong>Fonte ICL Notícias</strong><p>Em reestruturação, Correios anunciam escala 12×36 em alguns setores</p></div><div class="noticia-card"><strong>Fonte ICL Notícias</strong><p>Conselho do FGTS amplia renda e financiamento do Minha Casa, Minha Vida</p></div><div class="noticia-card"><strong>Fonte DW Europa</strong><p>O custo bilionário da guerra dos EUA contra o Irã</p></div><div class="noticia-card"><strong>Fonte DW Europa</strong><p>Presidente alemão diz que guerra no Irã é um "erro desastroso"</p></div><div class="noticia-card"><strong>Fonte DW Europa</strong><p>EUA enviarão mais soldados ao Oriente Médio</p></div><div class="noticia-card"><strong>Fonte Al Jazeera</strong><p>Explosão e incêndio em arranha-céu em Erbil em meio a ataques iranianos</p></div><div class="noticia-card"><strong>Fonte Al Jazeera</strong><p>Refugiados palestinos no Líbano enfrentam outro deslocamento forçado</p></div><div class="noticia-card"><strong>Fonte Al Jazeera</strong><p>Fabricante de armas prospera em meio à guerra EUA-Israel contra o Irã</p></div><div class="noticia-card"><strong>Fonte CNN Brasil</strong><p>Vini Jr. e Raphinha se apresentam à Seleção Brasileira para Data Fifa; veja</p></div><div class="noticia-card"><strong>Fonte CNN Brasil</strong><p>China adota medida para lidar com alta do petróleo devido à guerra</p></div><div class="noticia-card"><strong>Fonte CNN Brasil</strong><p>Trump diz que Hegseth ficou “decepcionado” com possibilidade de cessar-fogo</p></div><div class="noticia-card"><strong>Fonte G1 Mundo</strong><p>Governo Milei divulga vídeo crítico a opositores da ditadura no aniversário de 50 anos de golpe militar que matou 30 mil na Argentina</p></div><div class="noticia-card"><strong>Fonte G1 Mundo</strong><p>EUA enviam ao Irã proposta de plano de paz com 15 pontos para encerrar a guerra, diz jornal</p></div><div class="noticia-card"><strong>Fonte G1 Mundo</strong><p>Sobe para 69 o número de mortos em acidente de avião militar na Colômbia</p></div></div>
+    <script>
+        function atualizarRelogio() { document.getElementById('relogio').innerText = new Date().toLocaleTimeString('pt-BR'); }
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+        function tocarNoticias() {
+            const audio = document.getElementById('audioRobo');
+            const botao = document.getElementById('btnOuvir');
+            const imagem = document.getElementById('imagemRobo');
+            const vu = document.getElementById('visualizer');
+            botao.innerText = "⌛ CARREGANDO...";
+            setTimeout(() => {
+                audio.src = "noticia_ira.mp3?t=" + new Date().getTime();
+                audio.play().then(() => {
+                    botao.innerText = "🔊 ROBÔ FALANDO...";
+                    botao.style.background = "#00ff00";
+                    if(imagem) imagem.classList.add('robo-ativo');
+                    if(vu) vu.style.visibility = 'visible';
+                    audio.onended = () => {
+                        botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
+                        botao.style.background = "#cc0000";
+                        if(imagem) imagem.classList.remove('robo-ativo');
+                        if(vu) vu.style.visibility = 'hidden';
+                    };
+                });
+            }, 500);
         }
-        // Atualiza a cada 5 minutos (300.000ms)
-        setInterval(carregarNoticias, 300000);
-        carregarNoticias();
     </script>
-
-    <div class="utilidades-section" style="margin-top: 40px; padding: 20px; border-top: 1px solid #333; text-align: center;">
-        <h3 style="color: #ff9800;">🚀 Ferramentas e Comunidade</h3>
-        <p style="color: #ccc;">Acesse o Google ou experimente a Inteligência Artificial que ajuda o Canal:</p>
-        
-        <div class="links-utilitarios" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <a href="https://www.google.com" target="_blank" style="background: #4285f4; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">🔍 Pesquisar no Google</a>
-            
-            <a href="https://gemini.google.com" target="_blank" style="background: #8e44ad; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">✨ Experimentar o Gemini</a>
-            
-            <a href="https://github.com/calango68/painel-calandrino" target="_blank" style="background: #333; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">🛠️ Ver Código no GitHub</a>
-        </div>
-        
-        <p style="margin-top: 20px; font-size: 0.9em; color: #888;">
-            Quer fazer parte do projeto? Cadastre-se e use as ferramentas oficiais do Google com o Breaking News Show.
-        </p>
-    </div>
-
 </body>
 </html>
