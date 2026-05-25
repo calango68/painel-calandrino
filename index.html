@@ -16,8 +16,35 @@
         .canais-amigos { background: rgba(204, 0, 0, 0.1); border-top: 2px solid #cc0000; padding: 30px; text-align: center; margin-top: 40px; }
         .btn-canal { display: inline-block; background: #333; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; font-weight: bold; transition: 0.3s; }
         .btn-canal:hover { background: #cc0000; }
-        @keyframes tremer { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, 2px); } 100% { transform: translate(1px, -1px); } }
-        .robo-ativo { animation: tremer 0.2s infinite; filter: drop-shadow(0 0 10px #00ff00); }
+        
+        /* Estrutura do novo robô com animação mecânica na boca */
+        .avatar-container {
+            position: relative;
+            width: 320px;
+            height: 180px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 2px solid #333;
+            background-color: #000;
+        }
+        .avatar-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .boca-movivel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Recorta a área exata da boca/queixo do robô */
+            clip-path: inset(32% 45% 60% 45%);
+            will-change: transform;
+            transition: transform 0.04s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +52,10 @@
     <div id="relogio">00:00:00</div>
     
     <div style="text-align: center; margin-top: 15px;">
-        <img id="imagemRobo" src="apresentador.png" style="width: 200px; transition: 0.3s;">
+        <div class="avatar-container">
+            <img src="apresentador.png" class="avatar-bg">
+            <img id="bocaRobo" src="apresentador.png" class="boca-movivel">
+        </div>
         <br>
         <button id="btnOuvir" onclick="tocarNoticias()" style="background: #cc0000; color: white; padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 1.1rem;">
             🎙️ OUVIR NOTÍCIAS ATUALIZADAS
@@ -38,15 +68,15 @@
         
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
+                <p style="margin: 0; font-size: 0.95rem;">PF aponta indícios de elo entre ex-secretário do governo Castro e chefe do CV</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
                 <p style="margin: 0; font-size: 0.95rem;">Estudo internacional desmente Luciano Huck: Bolsa Família elevou emprego e ainda reduziu a mortalidade</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
                 <p style="margin: 0; font-size: 0.95rem;">Bolsonaro deve divulgar lista de candidatos que apoia para sanar disputas internas</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
-                <p style="margin: 0; font-size: 0.95rem;">Hugo Motta: Fim da escala 6×1 terá dois dias de folga já em 2026</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
@@ -62,6 +92,10 @@
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
+                <p style="margin: 0; font-size: 0.95rem;">Presidente da Bolívia diz que aceitará corte salarial de 50%</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
                 <p style="margin: 0; font-size: 0.95rem;">México diz que receberá seleção iraniana na Copa do Mundo de 2026</p>
             </div>
             <div class="noticia-card">
@@ -69,20 +103,20 @@
                 <p style="margin: 0; font-size: 0.95rem;">Israel intensifica ataques em Gaza enquanto Netanyahu adia cessar-fogo nas urnas</p>
             </div>
             <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
-                <p style="margin: 0; font-size: 0.95rem;">Celebrações moderadas do Dia da Libertação do Líbano sob nova ocupação israelense</p>
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">Miley Cyrus revela por que nunca ficou deslumbrada com a fama</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Kimi Antonelli vê Ferrari como ameaça à sequência de vitórias na Fórmula 1</p>
+                <p style="margin: 0; font-size: 0.95rem;">Governo diz que deve decidir sobre aumento de etanol na gasolina em junho</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">BC diz que impactos climáticos chegam ao sistema financeiro pelo agro</p>
+                <p style="margin: 0; font-size: 0.95rem;">Caiado sobre Flávio: Problemas que ele tem que responder estão no Brasil</p>
             </div>
             <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Anvisa aprova novo medicamento para tratar crises de enxaqueca</p>
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
+                <p style="margin: 0; font-size: 0.95rem;">Netanyahu diz que Israel vai 'intensificar' ataques ao Líbano em ofensiva contra o Hezbollah</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
@@ -91,10 +125,6 @@
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
                 <p style="margin: 0; font-size: 0.95rem;">Irã vai restabelecer acesso à internet no país, diz mídia estatal</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
-                <p style="margin: 0; font-size: 0.95rem;">STF e AGU discutem reação após Moraes ser notificado por processo movido nos EUA contra ele</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Jovem Pan News</div>
@@ -110,59 +140,99 @@
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">Educação é instrumento de consciência e soberania para Brasil e África</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">STF articula resposta após Moraes ser notificado em processo dos EUA</p>
+            </div>
+            <div class="noticia-card">
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
                 <p style="margin: 0; font-size: 0.95rem;">5º leilão Eco Invest pode levantar R$ 50 bilhões em investimentos</p>
             </div>
             <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Acordo prevê regra de transição de 60 dias para fim da escala 6x1</p>
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">O arsenal de IA nas eleições para promover candidatos — e atacar adversários</p>
             </div>
             <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Jairinho desiste de novo adiamento, e julgamento do caso Henry começa</p>
+                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
+                <p style="margin: 0; font-size: 0.95rem;">O recado do papa Leão 14 sobre a inteligência artificial em seu primeiro 'cartão de visitas' ao completar um ano de pontificado</p>
             </div>
             <div class="noticia-card">
                 <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
                 <p style="margin: 0; font-size: 0.95rem;">A viagem de Flávio Bolsonaro aos EUA em busca de Trump: classe executiva, steak de carne, fotos e sorvete</p>
             </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">O que a disputa inesperada entre PCC e CV em São Paulo revela sobre a facção paulista</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Por que apoio da China à aliada Cuba é tão limitado em meio à pressão dos EUA?</p>
-            </div>
     </div>
 
     <div class="canais-amigos">
-        <h2 style="color: #ffcc00; margin-bottom: 20px;">📺 CANAIS AMIGOS</h2>
-        <a href="https://www.youtube.com/@SouInsano" target="_blank" class="btn-canal">🔥 SOU INSANO</a>
-        <a href="https://www.youtube.com/@namiradodebate" target="_blank" class="btn-canal">🎤 NA MIRA DO DEBATE</a>
-        <a href="https://www.youtube.com/@calandrinocesar" target="_blank" class="btn-canal">🕹️ NOSTALGIA GAMES</a>
-        <a href="https://www.youtube.com/@calandrinocesar-n" target="_blank" class="btn-canal">🔴 ÚLTIMAS NOTÍCIAS CÉSAR CALANDRINO</a>
-    </div>
+        <h2 style="color: #ffcc00; margin-bottom: 20px;">📺 CANAIS AMIGOS</h2>
+        <a href="https://www.youtube.com/@SouInsano" target="_blank" class="btn-canal">🔥 SOU INSANO</a>
+        <a href="https://www.youtube.com/@namiradodebate" target="_blank" class="btn-canal">🎤 NA MIRA DO DEBATE</a>
+        <a href="https://www.youtube.com/@calandrinocesar" target="_blank" class="btn-canal">🕹️ NOSTALGIA GAMES</a>
+        <a href="https://www.youtube.com/@calandrinocesar-n" target="_blank" class="btn-canal">🔴 ÚLTIMAS NOTÍCIAS CÉSAR CALANDRINO</a>
+    </div>
 
     <script>
         function atualizarRelogio() { document.getElementById('relogio').innerText = new Date().toLocaleTimeString('pt-BR'); }
         setInterval(atualizarRelogio, 1000);
         atualizarRelogio();
 
+        let audioCtx, analyser, source, dataArray, animationId;
+
+        function iniciarAnaliseAudio(audioElement) {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioCtx.createAnalyser();
+                source = audioCtx.createMediaElementSource(audioElement);
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                analyser.fftSize = 64;
+            }
+            
+            dataArray = new Uint8Array(analyser.frequencyBinCount);
+            const boca = document.getElementById('bocaRobo');
+
+            function atualizarMovimento() {
+                if (audioElement.paused) return;
+                
+                analyser.getByteFrequencyData(dataArray);
+                let volumeMestre = 0;
+                for (let i = 0; i < dataArray.length; i++) {
+                    volumeMestre += dataArray[i];
+                }
+                let media = volumeMestre / dataArray.length;
+                
+                // Mapeia o som para mover a boca até 10 pixels para baixo
+                let deslocamento = Math.min((media / 255) * 50, 10);
+                boca.style.transform = `translateY(${deslocamento}px)`;
+                
+                animationId = requestAnimationFrame(atualizarMovimento);
+            }
+            
+            audioCtx.resume().then(() => atualizarMovimento());
+        }
+
         function tocarNoticias() {
             const audio = document.getElementById('audioRobo');
             const botao = document.getElementById('btnOuvir');
-            const imagem = document.getElementById('imagemRobo');
             botao.innerText = "⌛ CARREGANDO...";
             
             audio.src = "noticia_ira.mp3?t=" + new Date().getTime();
             audio.play().then(() => {
                 botao.innerText = "🔊 ROBÔ FALANDO...";
                 botao.style.background = "#00ff00";
-                imagem.classList.add('robo-ativo');
+                
+                iniciarAnaliseAudio(audio);
+                
                 audio.onended = () => {
                     botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
                     botao.style.background = "#cc0000";
-                    imagem.classList.remove('robo-ativo');
+                    document.getElementById('bocaRobo').style.transform = 'translateY(0px)';
+                    if (animationId) cancelAnimationFrame(animationId);
                 };
+            }).catch(() => {
+                botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
+                botao.style.background = "#cc0000";
             });
         }
     </script>
