@@ -1,0 +1,62 @@
+import re
+import os
+
+fontes = {
+    "G1": "https://g1.globo.com/rss/g1/",
+    "CNN": "https://www.cnnbrasil.com.br/feed/",
+    "Agência Brasil": "https://agenciabrasil.ebc.com.br/rss/geral/feed.xml",
+    "R7": "https://noticias.r7.com/feed.xml",
+    "BBC": "https://www.bbc.com/portuguese/index.xml"
+}
+
+def buscar_noticias():
+    todas_manchetes = []
+    print("📡 Coletando as 5 principais do dia...")
+    for nome, url in fontes.items():
+        try:
+            feed = feedparser.parse(url)
+            for entry in feed.entries[:2]:
+                titulo = re.sub('<[^<]+?>', '', entry.title)
+                titulo = titulo.replace("STF", "Supremo Tribunal Federal").replace("EUA", "Estados Unidos")
+                todas_manchetes.append(f"No portal {nome}: {titulo}.")
+        except:
+            continue
+    selecionadas = todas_manchetes[:5]
+    roteiro = "Olá! Estas são as cinco notícias que movimentam o dia no Breaking News Show. "
+    roteiro += " ".join(selecionadas)
+    roteiro += " Para mais detalhes, inscreva-se no canal. Até a próxima!"
+    return roteiro
+
+texto_final = buscar_noticias()
+
+if texto_final:
+    print(f"🎙️ Sintetizando voz...")
+    texto_limpo = texto_final.replace('"', '').replace("'", "")
+    caminho_base = "/home/calango/"
+    audio_raw = caminho_base + "noticia_raw.wav"
+    audio_final = caminho_base + "noticia.wav"
+    video_saida = caminho_base + "video_final.mp4"
+    imagem_fundo = "/home/calango/Área de trabalho/Breaking News Show/boas vindas.png"
+
+    os.system(f'echo "{texto_limpo}" | piper pt_BR-faber-medium.onnx > {audio_raw}')
+    os.system(f'ffmpeg -i {audio_raw} -filter:a "volume=1.5" -y {audio_final} > /dev/null 2>&1')
+    
+    # 3. Gera o Vídeo Final com a música do YouTube
+    print("🎬 Misturando voz e a trilha City Lights...")
+    trilha = "/home/calango/Área de trabalho/trilha.mp3"
+    
+    # O comando abaixo mistura a voz com a trilha baixinha (10% do volume)
+    # [1:a] é a voz, [2:a] é a música
+    opcoes_ffmpeg = '-c:v libx264 -tune stillimage -shortest -pix_fmt yuv420p'
+    comando_video = f'ffmpeg -loop 1 -i "{imagem_fundo}" -i "{audio_final}" -i "{trilha}" -filter_complex "[2:a]volume=0.1[bg];[1:a][bg]amix=inputs=2:duration=first" {opcoes_ffmpeg} "{video_saida}" -y > /dev/null 2>&1'
+    
+    os.system(comando_video)
+    
+    if os.path.exists(video_saida):
+        print(f"\n🚀 SUCESSO! Abrindo o vídeo do Breaking News Show...")
+        # Isso vai abrir o vídeo automaticamente para você conferir
+        os.system(f'ffplay -autoexit {video_saida} > /dev/null 2>&1')
+    else:
+        print("\n❌ ERRO: Verifique se o nome do arquivo MP3 na Área de Trabalho está correto.")
+else:
+    print("❌ Erro ao coletar notícias.")
