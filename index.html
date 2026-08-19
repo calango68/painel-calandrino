@@ -1,244 +1,105 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Breaking News Show - Cesar Calandrino</title>
-    <style>
-        body { 
-            background: #000 url('https://raw.githubusercontent.com/calango68/painel-calandrino/main/plantao_hoje.png') no-repeat center center fixed; 
-            background-size: cover; color: white; font-family: Arial, sans-serif; margin: 0; overflow-x: hidden;
-        }
-        .topo { background: rgba(0,0,0,0.9); padding: 15px; border-bottom: 4px solid #cc0000; text-align: center; }
-        #relogio { font-size: 50px; font-weight: bold; text-align: center; color: #ffcc00; margin-top: 10px; }
-        .container-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; }
-        .noticia-card { background: rgba(0,0,0,0.85); border: 1px solid #444; padding: 15px; border-radius: 10px; width: 300px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .canais-amigos { background: rgba(204, 0, 0, 0.1); border-top: 2px solid #cc0000; padding: 30px; text-align: center; margin-top: 40px; }
-        .btn-canal { display: inline-block; background: #333; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin: 5px; font-weight: bold; transition: 0.3s; }
-        .btn-canal:hover { background: #cc0000; }
-        
-        /* Estrutura do novo robô com animação mecânica na boca */
-        .avatar-container {
-            position: relative;
-            width: 320px;
-            height: 180px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 10px;
-            border: 2px solid #333;
-            background-color: #000;
-        }
-        .avatar-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .boca-movivel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Recorta a área exata da boca/queixo do robô */
-            clip-path: inset(32% 45% 60% 45%);
-            will-change: transform;
-            transition: transform 0.04s ease-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Primeiro Horizonte de Akito</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .content-card {
+      margin-bottom: 30px;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    video, iframe {
+      width: 100%;
+      border-radius: 6px;
+    }
+    iframe {
+      height: 400px;
+      border: none;
+    }
+    audio {
+      width: 100%;
+      margin-top: 5px;
+    }
+    .btn-download {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #0066cc;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-    <div class="topo"><strong>🔴 BREAKING NEWS SHOW | Cesar Calandrino</strong></div>
-    <div id="relogio">00:00:00</div>
-    
-    <div style="text-align: center; margin-top: 15px;">
-        <div class="avatar-container">
-            <img src="apresentador.png" class="avatar-bg">
-            <img id="bocaRobo" src="apresentador.png" class="boca-movivel">
+
+  <div class="container">
+    <header>
+      <h1>O Primeiro Horizonte de Akito</h1>
+      <p class="subtitle">Por César Renato</p>
+    </header>
+
+    <main>
+      <section class="content-card">
+        <h2>Vídeo Musical (Com Letra)</h2>
+        <video controls poster="">
+          <source src="Primeiro Horizonte de Akito.mp4" type="video/mp4">
+          Seu navegador não suporta a exibição de vídeos.
+        </video>
+      </section>
+
+      <section class="content-card">
+        <h2>Livro / Documento</h2>
+        <a href="O Primeiro Horizonte de Akito.pdf" target="_blank" class="btn-download">Abrir / Baixar PDF</a>
+        <iframe class="pdf-frame" src="O Primeiro Horizonte de Akito.pdf"></iframe>
+      </section>
+
+      <section class="content-card">
+        <h2>Faixas de Áudio e Bases</h2>
+
+        <div style="margin-bottom: 1.2rem;">
+          <p><strong>Eternal Wind of the Moon (Piano)</strong></p>
+          <audio controls src="piano.wav"></audio>
         </div>
-        <br>
-        <button id="btnOuvir" onclick="tocarNoticias()" style="background: #cc0000; color: white; padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 1.1rem;">
-            🎙️ OUVIR NOTÍCIAS ATUALIZADAS
-        </button>
-    </div>
 
-    <audio id="audioRobo" src="noticia_ira.mp3"></audio>
+        <div>
+          <p><strong>Eternal Wind of the Moon (Remix)</strong></p>
+          <audio controls src="remix.wav"></audio>
+        </div>
+      </section>
+    </main>
 
-    <div class="container-cards">
-        
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
-                <p style="margin: 0; font-size: 0.95rem;">Butantan continua estudo da vacina da dengue em idosos após suspensão temporária</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
-                <p style="margin: 0; font-size: 0.95rem;">Comissão da Câmara aprova redução da maioridade penal para 16 anos</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">ICL Notícias</div>
-                <p style="margin: 0; font-size: 0.95rem;">Mercado Livre perde R$ 263 mil em golpe de pastores, diz investigação</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
-                <p style="margin: 0; font-size: 0.95rem;">EUA e Irã voltam a trocar ataques após queda de helicóptero</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
-                <p style="margin: 0; font-size: 0.95rem;">Quais são as condições do Irã para fechar acordo com os EUA?</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">DW Europa</div>
-                <p style="margin: 0; font-size: 0.95rem;">Número de conflitos envolvendo governos é o maior desde a 2ª Guerra</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
-                <p style="margin: 0; font-size: 0.95rem;">A Fortaleza Europa está a tornar-se mais rigorosa?</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
-                <p style="margin: 0; font-size: 0.95rem;">Inflação nos EUA atinge novo máximo em três anos em meio ao aumento dos preços da energia</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Al Jazeera</div>
-                <p style="margin: 0; font-size: 0.95rem;">AO VIVO: Portugal x Nigéria – amistoso internacional da Copa do Mundo 2026</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Bolsas da Europa fecham em queda com tensão EUA-Irã e decisão do BCE</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Unica defende E32 e estima economia bilionária</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">CNN Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Centrais sindicais vão à OIT contra PEC alternativa ao fim da escala 6×1</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
-                <p style="margin: 0; font-size: 0.95rem;">Papa Leão XIV chega à Sagrada Família para abençoar a torre que tornou a igreja a mais alta do mundo</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
-                <p style="margin: 0; font-size: 0.95rem;">Presidente da Fifa é retratado como fantoche de Trump em jornal; VEJA IMAGEM</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">G1 Mundo</div>
-                <p style="margin: 0; font-size: 0.95rem;">Na véspera da Copa do Mundo, papa Leão XIV diz que vida e futebol se jogam 'em equipe'</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Jovem Pan News</div>
-                <p style="margin: 0; font-size: 0.95rem;">Trump diz que população de Cuba ‘quer terrivelmente’ que os EUA cuidem deles - Jovem Pan</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Jovem Pan News</div>
-                <p style="margin: 0; font-size: 0.95rem;">Trem de pouso de avião colapsa e deixa feridos na Alemanha - Jovem Pan</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Jovem Pan News</div>
-                <p style="margin: 0; font-size: 0.95rem;">Simone Tebet: ‘Espero que o bolsonarismo seja varrido da face da terra’ - Jovem Pan</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Bandeirantes</div>
-                <p style="margin: 0; font-size: 0.95rem;">Vergonha Alheia: moradores de Osasco sofrem com inundações - band.com.br</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Comissão da Câmara aprova redução da maioridade penal para 16 anos</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">TCU aprova com ressalvas contas do governo Lula de 2025</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">Agência Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Com geração talentosa, Inglaterra deve dominar Grupo L da Copa</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">'Vacina do Butantan contra dengue seria aprovada em qualquer lugar do mundo', diz ex-diretor da Anvisa</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Redução da maioridade penal avança na Câmara; quais são os próximos passos?</p>
-            </div>
-            <div class="noticia-card">
-                <div style="color: #cc0000; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 5px;">BBC Brasil</div>
-                <p style="margin: 0; font-size: 0.95rem;">Diabetes tipo 5 divide cientistas e médicos sobre nova categoria da doença</p>
-            </div>
-    </div>
+    <footer>
+      <p>&copy; 2026 O Primeiro Horizonte de Akito — Todos os direitos reservados.</p>
+    </footer>
+  </div>
 
-    <div class="canais-amigos">
-        <h2 style="color: #ffcc00; margin-bottom: 20px;">📺 CANAIS AMIGOS</h2>
-        <a href="https://www.youtube.com/@SouInsano" target="_blank" class="btn-canal">🔥 SOU INSANO</a>
-        <a href="https://www.youtube.com/@namiradodebate" target="_blank" class="btn-canal">🎤 NA MIRA DO DEBATE</a>
-        <a href="https://www.youtube.com/@calandrinocesar" target="_blank" class="btn-canal">🕹️ NOSTALGIA GAMES</a>
-        <a href="https://www.youtube.com/@calandrinocesar-n" target="_blank" class="btn-canal">🔴 ÚLTIMAS NOTÍCIAS CÉSAR CALANDRINO</a>
-    </div>
-
-    <script>
-        function atualizarRelogio() { document.getElementById('relogio').innerText = new Date().toLocaleTimeString('pt-BR'); }
-        setInterval(atualizarRelogio, 1000);
-        atualizarRelogio();
-
-        let audioCtx, analyser, source, dataArray, animationId;
-
-        function iniciarAnaliseAudio(audioElement) {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioCtx.createAnalyser();
-                source = audioCtx.createMediaElementSource(audioElement);
-                source.connect(analyser);
-                analyser.connect(audioCtx.destination);
-                analyser.fftSize = 64;
-            }
-            
-            dataArray = new Uint8Array(analyser.frequencyBinCount);
-            const boca = document.getElementById('bocaRobo');
-
-            function atualizarMovimento() {
-                if (audioElement.paused) return;
-                
-                analyser.getByteFrequencyData(dataArray);
-                let volumeMestre = 0;
-                for (let i = 0; i < dataArray.length; i++) {
-                    volumeMestre += dataArray[i];
-                }
-                let media = volumeMestre / dataArray.length;
-                
-                // Mapeia o som para mover a boca até 10 pixels para baixo
-                let deslocamento = Math.min((media / 255) * 50, 10);
-                boca.style.transform = `translateY(${deslocamento}px)`;
-                
-                animationId = requestAnimationFrame(atualizarMovimento);
-            }
-            
-            audioCtx.resume().then(() => atualizarMovimento());
-        }
-
-        function tocarNoticias() {
-            const audio = document.getElementById('audioRobo');
-            const botao = document.getElementById('btnOuvir');
-            botao.innerText = "⌛ CARREGANDO...";
-            
-            audio.src = "noticia_ira.mp3?t=" + new Date().getTime();
-            audio.play().then(() => {
-                botao.innerText = "🔊 ROBÔ FALANDO...";
-                botao.style.background = "#00ff00";
-                
-                iniciarAnaliseAudio(audio);
-                
-                audio.onended = () => {
-                    botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
-                    botao.style.background = "#cc0000";
-                    document.getElementById('bocaRobo').style.transform = 'translateY(0px)';
-                    if (animationId) cancelAnimationFrame(animationId);
-                };
-            }).catch(() => {
-                botao.innerText = "🎙️ OUVIR NOTÍCIAS ATUALIZADAS";
-                botao.style.background = "#cc0000";
-            });
-        }
-    </script>
 </body>
 </html>
