@@ -1,5 +1,0 @@
-cd ~/painel-calandrino/akito
-
-# Apaga o index.html antigo e abre o novo para colar
-rm -f index.html
-nano index.html
